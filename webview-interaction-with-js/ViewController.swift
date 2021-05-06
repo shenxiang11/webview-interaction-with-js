@@ -15,9 +15,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        webview.configuration.userContentController.add(self, name: "hahaha")
+        webview.configuration.userContentController.add(self, name: "showAlert")
+        webview.configuration.userContentController.add(self, name: "showAction")
                                 
         let htmlFile = Bundle.main.path(forResource: "index", ofType: "html")!
+//        webview.loadHTMLString(try! String(contentsOfFile: htmlFile), baseURL: nil)
         webview.loadFileURL(URL(fileURLWithPath: htmlFile), allowingReadAccessTo: URL(fileURLWithPath: htmlFile))
     }
     
@@ -29,8 +31,8 @@ class ViewController: UIViewController {
         }
     }
     
-    func showModal() {
-        let alertController = UIAlertController(title: "恭喜", message: "你通过 js 调用了 swift 来展示一个 alert", preferredStyle: .alert)
+    func showAlert(_ message: String) {
+        let alertController = UIAlertController(title: "提示", message: message, preferredStyle: .alert)
         let confirm = UIAlertAction(title: "确定", style: .default) {_ in
             self.dismiss(animated: true)
         }
@@ -38,8 +40,8 @@ class ViewController: UIViewController {
         navigationController?.present(alertController, animated: true)
     }
     
-    func showAction() {
-        let alertController = UIAlertController(title: "恭喜", message: "你通过 js 调用了 swift 来展示一个action sheet", preferredStyle: .actionSheet)
+    func showAction(_ message: String) {
+        let alertController = UIAlertController(title: "提示", message: message, preferredStyle: .actionSheet)
         let confirm = UIAlertAction(title: "确定", style: .default) {_ in
             self.dismiss(animated: true)
         }
@@ -50,11 +52,11 @@ class ViewController: UIViewController {
 
 extension ViewController: WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        switch "\(message.body)" {
+        switch "\(message.name)" {
         case "showAction":
-            showAction()
-        case "showModal":
-            showModal()
+            showAction(message.body as? String ?? "")
+        case "showAlert":
+            showAlert(message.body as? String ?? "")
         default:
             fatalError("未定义的行为")
         }

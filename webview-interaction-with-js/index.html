@@ -48,12 +48,11 @@
         document.getElementById('btn2').addEventListener('click', callSwift2);
 
         function callSwift1() {
-            console.log(webkit.messageHandlers.hahaha);
-            webkit.messageHandlers.hahaha.postMessage("showModal");
+            webkit.messageHandlers.showAlert.postMessage("Swift，帮我打开一下 alert.");
         }
 
         function callSwift2() {
-            webkit.messageHandlers.hahaha.postMessage("showAction");
+            webkit.messageHandlers.showAction.postMessage("Swift，帮我打开一下 actionSheet.");
         }
 
     </script>
