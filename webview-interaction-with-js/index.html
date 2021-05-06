@@ -14,7 +14,24 @@
         quibusdam magnam nostrum!</p>
 
     <script>
-
+        let callTime = 0;
+        function call1() {
+            callTime += 1;
+            let pTag = document.createElement('p');
+            pTag.innerHTML = `<p>调用js方法插入的动态文本, callTime ${callTime}：${Date.now()}</p>`
+            document.body.append(pTag);
+            if (callTime === 1) {
+                return true;
+            } else if (callTime === 2) {
+                return false;
+            } else if (callTime === 3) {
+                return 1000;
+            } else if (callTime === 4) {
+                return 'success';
+            } else if (callTime === 5) {
+                throw new Error('执行第五次，发生错误！');
+            }
+        }
     </script>
 </body>
 

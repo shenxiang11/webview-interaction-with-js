@@ -34,7 +34,13 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="lR8-Bf-BfV" secondAttribute="bottom" id="tGQ-VK-gRs"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="3in-QL-SkG"/>
+                    <navigationItem key="navigationItem" id="3in-QL-SkG">
+                        <barButtonItem key="rightBarButtonItem" systemItem="play" id="l1i-eO-noa">
+                            <connections>
+                                <action selector="handlePlayBtnTapped:" destination="BYZ-38-t0r" id="08k-j0-H4c"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="webview" destination="lR8-Bf-BfV" id="2jY-qE-HSz"/>
                     </connections>
