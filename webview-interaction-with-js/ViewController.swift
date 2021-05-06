@@ -52,6 +52,7 @@ class ViewController: UIViewController {
 
 extension ViewController: WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        print(type(of: message.body), (message.body as? NSDictionary)?["a"])
         switch "\(message.name)" {
         case "showAction":
             showAction(message.body as? String ?? "")

@@ -15,6 +15,7 @@
 
     <button id="btn1">点击调用 swift 方法1</button>
     <button id="btn2">点击调用 swift 方法2</button>
+    <button id="btn3">点击调用 swift 方法3</button>
 
     <script src="https://wechatfe.github.io/lib/vconsole/3.4.1/vconsole.min.js"></script>
     <script>
@@ -46,15 +47,19 @@
 
         document.getElementById('btn1').addEventListener('click', callSwift1);
         document.getElementById('btn2').addEventListener('click', callSwift2);
+        document.getElementById('btn3').addEventListener('click', callSwift3);
 
         function callSwift1() {
             webkit.messageHandlers.showAlert.postMessage("Swift，帮我打开一下 alert.");
         }
 
         function callSwift2() {
-            webkit.messageHandlers.showAction.postMessage("Swift，帮我打开一下 actionSheet.");
+            webkit.messageHandlers.showAction.postMessage({ a: 1, s: 2 });
         }
 
+        function callSwift3() {
+            webkit.messageHandlers.showAction.postMessage(true);
+        }
     </script>
 </body>
 
