@@ -15,7 +15,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        webview.load(URLRequest(url: URL(string: "https://www.baidu.com")!))
+        let htmlFile = try! String(contentsOfFile: Bundle.main.path(forResource: "index", ofType: "html")!)
+        webview.loadHTMLString(htmlFile, baseURL: nil)
     }
 
 
