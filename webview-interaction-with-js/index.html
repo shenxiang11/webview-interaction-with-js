@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
     <title></title>
 </head>
 
@@ -13,9 +13,20 @@
         consectetur fugiat obcaecati natus dolorum! Quidem repellendus vero expedita, placeat eius voluptas. Error
         quibusdam magnam nostrum!</p>
 
+    <button id="btn1">点击调用 swift 方法1</button>
+    <button id="btn2">点击调用 swift 方法2</button>
+
+    <script src="https://wechatfe.github.io/lib/vconsole/3.4.1/vconsole.min.js"></script>
+    <script>
+        // 初始化vConsole
+        window.vConsole = new window.VConsole({
+            defaultPlugins: ['system', 'network', 'element', 'storage'], // 可以在此设定要默认加载的面板
+            maxLogNumber: 1000,
+        });
+    </script>
     <script>
         let callTime = 0;
-        function call1() {
+        function callJavascript() {
             callTime += 1;
             let pTag = document.createElement('p');
             pTag.innerHTML = `<p>调用js方法插入的动态文本, callTime ${callTime}：${Date.now()}</p>`
@@ -32,6 +43,19 @@
                 throw new Error('执行第五次，发生错误！');
             }
         }
+
+        document.getElementById('btn1').addEventListener('click', callSwift1);
+        document.getElementById('btn2').addEventListener('click', callSwift2);
+
+        function callSwift1() {
+            console.log(webkit.messageHandlers.hahaha);
+            webkit.messageHandlers.hahaha.postMessage("showModal");
+        }
+
+        function callSwift2() {
+            webkit.messageHandlers.hahaha.postMessage("showAction");
+        }
+
     </script>
 </body>
 
